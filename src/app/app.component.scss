@@ -1,0 +1,14 @@
+.sidenav-container {
+  height: calc(100vh - 64px);
+  margin-top: 64px;
+
+  mat-sidenav {
+    width: 250px;
+    box-shadow: 3px 0 6px rgba(0, 0, 0, 0.24);
+  }
+
+  .content-wrapper {
+    padding: 20px;
+    height: 100%;
+  }
+}

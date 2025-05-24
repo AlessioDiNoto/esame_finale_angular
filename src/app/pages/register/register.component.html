@@ -1,0 +1,120 @@
+<!-- registration.component.html -->
+<div class="registration-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <h2>Registrazione utente</h2>
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill">
+          <mat-label>Nome</mat-label>
+          <mat-icon matPrefix>person</mat-icon>
+          <input
+            matInput
+            formControlName="nome"
+            required
+            [disabled]="loading"
+          />
+          <mat-error *ngIf="nome.invalid && nome.touched">
+            Il nome è obbligatorio
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <mat-icon matPrefix>mail</mat-icon>
+          <input
+            matInput
+            type="email"
+            formControlName="email"
+            required
+            [disabled]="loading"
+          />
+          <mat-error *ngIf="email.invalid && email.touched">
+            <div *ngIf="email.errors?.['required']">L'email è obbligatoria</div>
+            <div *ngIf="email.errors?.['email']">Formato email non valido</div>
+            <div *ngIf="email.errors?.['gmail']">
+              L'email deve terminare con &#64;gmail.com
+            </div>
+            <div *ngIf="email.errors?.['onlyLetters']">
+              La parte prima di &#64; deve contenere solo lettere
+            </div>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <mat-icon matPrefix>lock</mat-icon>
+          <input
+            matInput
+            type="password"
+            formControlName="password"
+            required
+            [disabled]="loading"
+          />
+          <mat-error *ngIf="password.invalid && password.touched">
+            <div *ngIf="password.errors?.['required']">
+              La password è obbligatoria
+            </div>
+            <div *ngIf="password.errors?.['minlength']">
+              Minimo 6 caratteri richiesti
+            </div>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Conferma Password</mat-label>
+          <mat-icon matPrefix>lock</mat-icon>
+          <input
+            matInput
+            type="password"
+            formControlName="confirmPassword"
+            required
+            [disabled]="loading"
+          />
+          <mat-error *ngIf="confirmPassword.invalid && confirmPassword.touched">
+            Conferma password obbligatoria
+          </mat-error>
+          <mat-error
+            *ngIf="registrationForm.errors?.['passwordsMismatch'] &&
+                        (confirmPassword.touched || submitted)"
+          >
+            Le password non coincidono
+          </mat-error>
+        </mat-form-field>
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="registrationForm.invalid || loading"
+          class="full-width"
+        >
+          <mat-progress-spinner
+            *ngIf="loading"
+            diameter="20"
+            mode="indeterminate"
+            color="accent"
+            style="vertical-align: middle; margin-right: 8px"
+          ></mat-progress-spinner>
+          Registrati
+        </button>
+
+        <div *ngIf="error" class="error-message">
+          {{ error }}
+        </div>
+
+        <div *ngIf="success" class="success-message">
+          Registrazione completata! Reindirizzamento al login...
+        </div>
+      </form>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-button routerLink="/login">Hai già un account? Accedi</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

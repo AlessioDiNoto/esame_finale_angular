@@ -1,0 +1,28 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  width: 100%;
+  left: 0;
+}
+
+.menu-btn {
+  margin-right: 8px;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+}
+.welcome {
+  margin-left: 16px;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #111;
+}

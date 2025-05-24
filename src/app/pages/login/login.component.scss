@@ -1,0 +1,28 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 16px;
+
+  mat-card {
+    width: 100%;
+    max-width: 400px;
+
+    mat-form-field {
+      width: 100%;
+      margin-bottom: 16px;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      margin-top: 16px;
+    }
+
+    .error-message {
+      color: #f44336;
+      margin: 16px 0;
+      text-align: center;
+    }
+  }
+}

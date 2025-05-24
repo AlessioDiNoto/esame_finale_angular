@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+  <ng-container *ngIf="auth.isLoggedIn$ | async">
+    <button mat-icon-button class="menu-btn" (click)="toggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </ng-container>
+
+  <span class="title">Esame Finale</span>
+  <ng-container *ngIf="auth.currentUser$ | async as user">
+    <span class="welcome">Benvenuto {{ user.username }}</span>
+  </ng-container>
+
+  <span class="spacer"></span>
+
+  <ng-container *ngIf="auth.isLoggedIn$ | async">
+    <button mat-button (click)="logout()">
+      <mat-icon>logout</mat-icon> Logout
+    </button>
+  </ng-container>
+</mat-toolbar>
