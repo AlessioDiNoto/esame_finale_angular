@@ -1,0 +1,25 @@
+.flex-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background: #fff;
+  padding: 2rem 3rem;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  align-items: center;
+  max-width: 500px; // larghezza massima della card
+  width: 100%; // si adatta su schermi piccoli
+  margin: 0 auto;
+}
+
+.select-row {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.mat-form-field {
+  min-width: 200px;
+}

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 // ------------------- Angular Material --------------------
 
@@ -13,6 +14,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 //-------------------------------------------------------------
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +25,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { WeatherComponent } from './pages/weather/weather/weather.component';
+import { WeatherReportComponent } from './pages/weather/weather-report/weather-report.component';
+import { CodiceFiscaleCardComponent } from './pages/codice-fiscale/components/codice-fiscale-card/codice-fiscale-card.component';
 
 @NgModule({
   declarations: [
@@ -31,8 +37,12 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     RegisterComponent,
     HeaderComponent,
     NavbarComponent,
+    WeatherComponent,
+    WeatherReportComponent,
+    CodiceFiscaleCardComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -46,6 +56,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MatSidenavModule,
     MatProgressSpinnerModule,
     MatInputModule,
+    MatSelectModule,
+    MatProgressBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
