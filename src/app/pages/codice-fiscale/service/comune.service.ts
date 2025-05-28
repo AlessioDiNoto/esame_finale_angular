@@ -22,15 +22,20 @@ export class ComuneService {
   private parseCSV(csvData: string): Comune[] {
     const lines = csvData.split('\n');
     return lines
-      .map((line) => {
-        const [codice, nome, provincia] = line.split(',');
+      .map((line): Comune | null => {
+        const cleanLine = line.trim();
+        if (!cleanLine) return null;
+        const [codice, nome, provincia] = cleanLine
+          .split(',')
+          .map((x) => x && x.trim());
+        if (!codice || !nome || !provincia) return null;
         return {
-          codice: codice.trim(),
-          nome: nome.trim().toUpperCase(),
-          provincia: provincia.trim(),
+          codice,
+          nome: nome.toUpperCase(),
+          provincia: provincia.toUpperCase(),
         };
       })
-      .filter((comune) => comune.codice && comune.nome && comune.provincia);
+      .filter((comune): comune is Comune => comune !== null);
   }
 
   getCodiceComune(nomeComune: string): string {

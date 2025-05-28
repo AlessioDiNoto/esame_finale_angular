@@ -1,59 +1,81 @@
 # Esame Finale Di Noto
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
+## 📌 Descrizione del Progetto
 
-## Development server
+**Utility App** è un'applicazione web sviluppata con Angular che offre strumenti utili per uso quotidiano. L'applicazione include attualmente due funzionalità principali:
 
-To start a local development server, run:
+1. **Calcolatore di Codice Fiscale Italiano**: Permette di calcolare il codice fiscale a partire dai dati anagrafici.
+2. **Servizio Meteo**: Fornisce informazioni meteorologiche aggiornate per diverse città nel mondo.
 
-```bash
-ng serve
+L'applicazione include anche un sistema di autenticazione (login/registrazione) per proteggere l'accesso alle funzionalità.
+
+## 🎯 Obiettivi e Funzionalità
+
+| Funzionalità                   | Obiettivo                                                                  |
+| ------------------------------ | -------------------------------------------------------------------------- |
+| **Autenticazione**             | Gestione sicura di login/registrazione con validazione avanzata dei campi  |
+| **Calcolatore Codice Fiscale** | Calcolo preciso del codice fiscale italiano secondo le normative vigenti   |
+| **Servizio Meteo**             | Visualizzazione di dati meteorologici in tempo reale per città selezionate |
+| **UI/UX**                      | Interfaccia intuitiva e responsive con Angular Material                    |
+
+## 🛠 Tecnologie Utilizzate
+
+- **Frontend**: Angular 16, Angular Material
+- **Gestione Stato**: RxJS, BehaviorSubject
+- **API Esterna**: OpenWeatherMap (per i dati meteo)
+- **Autenticazione**: JWT (simulato) con localStorage
+- **Routing**: Angular Router con guardie di autenticazione
+
+## 🚀 Come Usare l'Applicazione
+
+### 1. Accesso all'Applicazione
+
+- **Registrazione**:
+  - Accedi alla route `/register`
+  - Compila il form con nome, email (solo Gmail) e password (min 6 caratteri)
+  - Clicca "Registrati"
+- **Login**:
+  - Accedi alla route `/login`
+  - Inserisci email e password
+  - Puoi usare l'account demo: `admin@gmail.com` / `admin`
+
+### 2. Calcolatore Codice Fiscale
+
+1. Naviga a `/codice-fiscale`
+2. Compila tutti i campi:
+   - Nome e Cognome
+   - Data di nascita (giorno, mese, anno)
+   - Sesso
+   - Comune di nascita (con autocompletamento)
+3. Clicca "Calcola Codice Fiscale"
+4. Il codice calcolato apparirà nel campo dedicato
+
+### 3. Servizio Meteo
+
+1. Naviga a `/weather`
+2. Seleziona un paese dal menu a tendina
+3. Scegli una città dalla lista
+4. Visualizza i dati meteo:
+   - Temperatura attuale
+   - Temperatura percepita
+   - Condizioni atmosferiche
+   - Icona descrittiva
+
+## 🏗 Architettura Principale
+
+```plaintext
+src/
+├── app/
+│   ├── auth/                  # Servizi e guardie di autenticazione
+│   ├── components/            # Componenti condivisi (header, navbar)
+│   ├── models/                # Interfacce e tipi
+│   ├── pages/                 # Pagine principali
+│   │   ├── codice-fiscale/    # Logica calcolo CF
+│   │   ├── home/              # Pagina iniziale
+│   │   ├── login/             # Pagina di accesso
+│   │   ├── register/          # Pagina registrazione
+│   │   └── weather/           # Servizio meteo
+│   ├── services/              # Servizi globali
+│   └── app.component.*        # Componente root
+└── assets/                    # Risorse statiche (es. lista comuni)
 ```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

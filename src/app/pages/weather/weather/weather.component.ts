@@ -25,8 +25,20 @@ export class WeatherComponent implements OnInit, OnDestroy {
       cities: ['Sydney', 'Adelaide', 'Melbourne'],
     },
     {
-      name: 'Pakistan',
-      cities: ['Lahore', 'Karachi', 'Islamabad'],
+      name: 'France',
+      cities: ['Paris', 'Lyon', 'Marseille'],
+    },
+    {
+      name: 'Germany',
+      cities: ['Berlin', 'Munich', 'Hamburg'],
+    },
+    {
+      name: 'Spain',
+      cities: ['Madrid', 'Barcelona', 'Valencia'],
+    },
+    {
+      name: 'Italy',
+      cities: ['Palermo', 'Rome', 'Milan'],
     },
   ];
 

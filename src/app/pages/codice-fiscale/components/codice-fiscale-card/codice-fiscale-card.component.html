@@ -1,1 +1,134 @@
-<p>codice-fiscale-card works!</p>
+<div class="codice-fiscale-container">
+  <h2>Calcolatore di Codice Fiscale</h2>
+  <p>Inserisci i tuoi dati per calcolare il codice fiscale italiano.</p>
+  <mat-card class="codice-fiscale-card">
+    <mat-card-header>
+      <mat-card-title>Calcolatore di Codice Fiscale</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="calcolaCodiceFiscale()">
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="nome" required />
+            <mat-error *ngIf="form.get('nome')?.hasError('required')"
+              >Campo obbligatorio</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Cognome</mat-label>
+            <input matInput formControlName="cognome" required />
+            <mat-error *ngIf="form.get('cognome')?.hasError('required')"
+              >Campo obbligatorio</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Giorno di nascita</mat-label>
+            <input matInput type="number" formControlName="giorno" required />
+            <mat-error *ngIf="form.get('giorno')?.hasError('required')"
+              >Campo obbligatorio</mat-error
+            >
+            <mat-error
+              *ngIf="
+                form.get('giorno')?.hasError('min') ||
+                form.get('giorno')?.hasError('max')
+              "
+            >
+              Giorno non valido
+            </mat-error>
+            <mat-error *ngIf="!validaGiorno()">
+              Giorno non valido per il mese/anno
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Mese di nascita</mat-label>
+            <mat-select formControlName="mese" required>
+              <mat-option *ngFor="let mese of mesi" [value]="mese">{{
+                mese
+              }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('mese')?.hasError('required')"
+              >Campo obbligatorio</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Anno di nascita</mat-label>
+            <input matInput type="number" formControlName="anno" required />
+            <mat-error *ngIf="form.get('anno')?.hasError('required')"
+              >Campo obbligatorio</mat-error
+            >
+            <mat-error
+              *ngIf="
+                form.get('anno')?.hasError('min') ||
+                form.get('anno')?.hasError('max')
+              "
+            >
+              Anno non valido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Sesso</mat-label>
+            <mat-select formControlName="sesso" required>
+              <mat-option *ngFor="let sesso of sessi" [value]="sesso">{{
+                sesso
+              }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('sesso')?.hasError('required')"
+              >Campo obbligatorio</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Comune di nascita</mat-label>
+            <input
+              type="text"
+              matInput
+              formControlName="comune"
+              required
+              [matAutocomplete]="auto"
+            />
+            <mat-autocomplete
+              #auto="matAutocomplete"
+              [displayWith]="displayComune"
+            >
+              <mat-option
+                *ngFor="let comune of filteredComuni | async"
+                [value]="comune"
+              >
+                {{ comune.nome }} ({{ comune.provincia }})
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="form.get('comune')?.hasError('required')"
+              >Campo obbligatorio</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Codice Fiscale</mat-label>
+            <input matInput formControlName="codiceFiscale" readonly />
+          </mat-form-field>
+        </div>
+
+        <div class="button-row">
+          <button mat-raised-button color="primary" type="submit">
+            Calcola Codice Fiscale
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

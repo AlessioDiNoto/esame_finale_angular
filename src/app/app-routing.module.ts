@@ -1,3 +1,4 @@
+import { CodiceFiscaleCardComponent } from './pages/codice-fiscale/components/codice-fiscale-card/codice-fiscale-card.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
@@ -23,6 +24,11 @@ const routes: Routes = [
         canActivate: [AuthGuard],
       },
     ],
+  },
+  {
+    path: 'codice-fiscale',
+    component: CodiceFiscaleCardComponent,
+    canActivate: [AuthGuard],
   },
 ];
 
